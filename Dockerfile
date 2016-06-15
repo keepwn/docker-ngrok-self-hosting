@@ -2,7 +2,7 @@ FROM alpine
 MAINTAINER keepwn <keepwn@gmail.com>
 
 RUN apk update && \
-    apk add git make go && \
+    apk add git make go openssl && \
     rm -rf /var/cache/apk/*
 
 ADD build.sh /
