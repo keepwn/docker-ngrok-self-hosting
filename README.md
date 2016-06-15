@@ -2,16 +2,16 @@
 
 ## Build Image
 ```
-docker build -t my/ngrok-self-hosting .
+docker build -t keepwn/ngrok-self-hosting .
 ```
 
 ## Generate Ngrok-Self
 ```
 cd ~
 mkdir ngrok-bin
-docker run --rm -e DOMAIN="tunnel.mydomain.com" -v ~/ngrok-bin:/release my/ngrok-self-hosting
+docker run --rm -e DOMAIN="tunnel.mydomain.com" -v $(pwd)/ngrok-bin:/release keepwn/ngrok-self-hosting
 ```
-Ngrok server and client binaries will be available in `~/ngrok-bin` on the host.
+Ngrok server and client binaries will be available in `$(pwd)/ngrok-bin` on the host.
 
 ## Environment Variables
 | variables   |  default   | meaning                                  |
