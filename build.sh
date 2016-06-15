@@ -44,12 +44,10 @@ HTTPS_PORT=${HTTPS_PORT}
 
 docker run --name=ngrok-server \
            --restart=always -d \
+           --net=host \
            -v \$(pwd):/release \
-           -p $TUNNEL_PORT:4443 \
-           -p $HTTP_PORT:80 \
-           -p $HTTPS_PORT:443 \
            alpine \
-           ./release/ngrokd -tlsKey=/release/device.key -tlsCrt=/release/device.crt -domain="$DOMAIN" -httpAddr=":80" -httpsAddr=":443" -tunnelAddr=":4443"
+           ./release/ngrokd -tlsKey=/release/device.key -tlsCrt=/release/device.crt -domain="\$DOMAIN" -httpAddr=":\$HTTP_PORT" -httpsAddr=":\$HTTPS_PORT" -tunnelAddr=":\$TUNNEL_PORT"
 EOF
 
 echo "=> Finish."
